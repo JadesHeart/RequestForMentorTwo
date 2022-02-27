@@ -12,6 +12,19 @@ import static io.restassured.RestAssured.given;
 
 public class getEmail {
     /**
+     * RequestSpecification указываю постоянные для запроса к АПИшке
+     *
+     * @return
+     */
+    public static RequestSpecification returnRequestSpecification() {
+        RequestSpecification requestSpecification = RestAssured.given();
+        requestSpecification.baseUri("https://reqres.in/api");
+        requestSpecification.basePath("/users");
+        requestSpecification.contentType(ContentType.JSON);
+        return requestSpecification;
+    }
+
+    /**
      * Метод для получения мэйла с АПИшки
      * 1) получаю респонс страницы
      * 2) в переменную stringResponse засовываю почту юзера
@@ -62,13 +75,10 @@ public class getEmail {
      * @return возвращает респонс страницы
      */
     public static Response getUsersByPage(int numberPage) {
-        RequestSpecification requestSpecification = RestAssured.given();
-        requestSpecification.baseUri("https://reqres.in/api");
+        RequestSpecification requestSpecification = returnRequestSpecification();
 
-        Response response = given()
-                .spec(requestSpecification)
-                .contentType(ContentType.JSON)
-                .when().get("/users?page=" + numberPage);
+        Response response = given(requestSpecification)
+                .when().get("?page=" + numberPage);
         return response;
     }
 
@@ -78,13 +88,9 @@ public class getEmail {
      * @return возвращает респонс страницы
      */
     public static Response getAllUsers() {
-        RequestSpecification requestSpecification = RestAssured.given();
-        requestSpecification.baseUri("https://reqres.in/api");
-        requestSpecification.basePath("/users?per_page=12");
+        RequestSpecification requestSpecification = returnRequestSpecification();
 
-        Response response = given()
-                .spec(requestSpecification)
-                .contentType(ContentType.JSON)
+        Response response = given(requestSpecification)
                 .when().get();
         return response;
     }

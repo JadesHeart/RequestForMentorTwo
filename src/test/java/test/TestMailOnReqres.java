@@ -30,6 +30,6 @@ public class TestMailOnReqres {
     @Test
     public void testMailComplianceFromURL() throws IOException {
         String eMail = getEmailWithPagination("Michael", "Lawson");
-        Assert.assertEquals(eMail, "michael.lawson@reqres", "Почта не совпадает с ожидаемой");
+        Assert.assertEquals(eMail, "michael.lawson@reqres.in", "Почта не совпадает с ожидаемой");
     }
 }
