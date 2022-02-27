@@ -5,8 +5,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static apiMethods.GetEmailFromPagination.getEmailWithPagination;
-import static apiMethods.GetEmailFromBody.getEmailFromBody;
+import static apiMethods.getEmail.*;
 
 /**
  * Класс с тест-кейсами
